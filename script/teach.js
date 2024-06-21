@@ -4,7 +4,7 @@ module.exports.config = {
     role: 0,
     description: "Teach the bot to respond like a person",
     usage: "teach [question] | [answer]",
-    credits: 'Developer',
+    credits: 'Lorenzo',
     cooldown: 3,
 };
 
@@ -27,7 +27,7 @@ module.exports.run = async function({ api, event, args }) {
     const answer = encodeURIComponent(input[1].trim());
 
     try {
-        const response = await axios.get(`https://simsimi.fun/api/v2/?mode=teach&lang=ph&message=${question}&answer=${answer}`);
+        const response = await axios.get(`https://lorenzorestapi.onrender.com/teach?ask=${question}&ans=${answer}`);
         const responseData = response.data;
         if (responseData.error) {
             api.sendMessage(`Error: ${responseData.error}`, threadID, messageID);
