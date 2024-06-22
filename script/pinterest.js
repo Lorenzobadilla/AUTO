@@ -45,7 +45,7 @@ module.exports.run = async function({
   const time = new Date();
   const timestamp = time.toISOString().replace(/[:.]/g, "-");
   if (!input) {
-    api.sendMessage(`To get started, type Pinterest followed by the name of the image you are looking for, and the expected number of images.\n\nExample:\n\n${prefix}soyeon - 10`, event.threadID, event.messageID);
+    api.sendMessage(`To get started, type Pinterest followed by the name of the image you are looking for, and the expected number of images.\n\nExample:\n\n${prefix} jujutsu kaisen - 10`, event.threadID, event.messageID);
   } else {
     try {
       const key = input.substr(0, input.indexOf('-'));

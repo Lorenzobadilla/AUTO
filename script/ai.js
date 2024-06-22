@@ -4,7 +4,7 @@ module.exports.config = {
   version: '1.0.0',
   role: 0,
   hasPrefix: false,
-  aliases: ['gpt', 'openai'],
+  aliases: ['gpt', 'openai','ai'],
   description: "An AI command powered by GPT-4",
   usage: "Ai [promot]",
   credits: 'Developer',
@@ -24,9 +24,9 @@ module.exports.run = async function({
   try {
     const {
       data
-    } = await axios.get(`https://soyeon-api.onrender.com/api?prompt=${encodeURIComponent(input)}`);
+    } = await axios.get(`https://api.kenliejugarap.com/ai/?text=${encodeURIComponent(input)}`);
     const response = data.response;
-    api.sendMessage(response + '\n\nhttps://bit.ly/create-chatbot-me', event.threadID, event.messageID);
+    api.sendMessage(response + '\n\n__________________', event.threadID, event.messageID);
   } catch (error) {
     api.sendMessage('An error occurred while processing your request.', event.threadID, event.messageID);
   }
