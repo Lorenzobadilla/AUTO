@@ -1,4 +1,4 @@
-   const axios = require('axios');
+const axios = require('axios');
 
    module.exports.config = {
      name: "ai",
@@ -8,19 +8,20 @@
      description: "Interacts with a GPT-4 API",
      hasPrefix: false,
      commandCategory: "ai and gpt4",
-     usages: "[question]",
+     usages: "ai [question]",
      cooldowns: 5,
      dependencies: {
        "axios": ""
      }
    };
 
-module.exports.handleEvent = async function ({ api, event }) {
+module.exports.run = async function ({ api, event }) {
      const lowerBody = event.body.toLowerCase();
      if (!(lowerBody.startsWith("gpt4") || lowerBody.startsWith("ai"))) return;
 
      const args = event.body.split(/\s+/);
      args.shift();
+  const uid = event.senderID;
 
      const question = args.join(" ");
      if (!question) {
@@ -28,9 +29,9 @@ module.exports.handleEvent = async function ({ api, event }) {
        return;
      }
 
-     api.sendMessage(`☄️ |Answering your question...`, event.threadID, event.messageID);
+     api.sendMessage(`⏱️ |Answering your question...`, event.threadID, event.messageID);
 
-     const apiUrl = `https://lorenzorestapi.onrender.com/gpt4?ask=${encodeURIComponent(question)}`;
+     const apiUrl = `https://lorenzorestapi.onrender.com/gpt4?ask=${encodeURIComponent(question)}&id=${uid}`;
 
      try {
        const response = await axios.get(apiUrl);

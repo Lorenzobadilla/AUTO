@@ -3,9 +3,10 @@ module.exports.config = {
     version: '1.0.0',
     role: 0,
     description: "Engage in conversation with an AI bot",
+    hasPrefix: false,
     usage: "sim [prompt]",
     credits: 'Lorenzo',
-    cooldown: 3,
+    cooldown: 0,
 };
 
 module.exports.run = async function({ api, event, args }) {
