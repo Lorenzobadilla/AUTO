@@ -21,11 +21,11 @@ module.exports.run = async function({ api, event, args }) {
   }
   api.sendMessage(`🔍 |Answering please wait..`, event.threadID, event.messageID);
   try {
-    const { data } = await axios.get(`https://openapi-idk8.onrender.com/aichat?query=${encodeURIComponent(input)}`);
+    const { data } = await axios.get(`https://openapi-idk8.onrender.com/chatter?query=${encodeURIComponent(input)}`);
     console.log(data); 
     const response = data.content; 
 
-    const finalResponse = `Ai conversation \n\n${response}`;
+    const finalResponse = `『𝗔𝗶 𝗖𝗼𝗻𝘃𝗲𝗿𝘀𝗮𝘁𝗶𝗼𝗻』\n\n${response}`;
     api.sendMessage(finalResponse + '\n\n____________________', event.threadID, event.messageID);
   } catch (error) {
     api.sendMessage('An error occurred while processing your request, please try sending your question again', event.threadID, event.messageID);

@@ -6,7 +6,7 @@ module.exports["config"] = {
   credits: "Lorenzo",//credits kay liane
   role: 0,
   commandCategory: "Ai-Chat",
-  usage: "[ prefix ]jea-mean [prompt]",
+  usage: "[ prefix ]jea [prompt]",
   hasPrefix: true,
   cooldowns: 0
 };
@@ -22,8 +22,7 @@ module.exports["run"] = async ({ api, event, args, Users }) => {
         `Asking Jea  Please wait a moment...`,
         event.threadID
       );
-
-      const apiUrl = `https://liaspark.chatbotcommunity.ltd/@lanceajiro/api/jea-mean?userName=${encodeURIComponent(name)}&key=j86bwkwo-8hako-12C&query=${encodeURIComponent(query)}`;
+const apiUrl = `https://liaspark.chatbotcommunity.ltd/@lanceajiro/api/jea-mean?userName=${encodeURIComponent(name)}&key=j86bwkwo-8hako-12C&query=${encodeURIComponent(query)}`;
       const response = await axios.get(apiUrl);
 
       if (response.data && response.data.message) {

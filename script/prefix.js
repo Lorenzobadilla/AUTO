@@ -30,7 +30,7 @@ module.exports.run = function ({ api, event, args, prefix, admin }) {
     let messageBody;
 
     if (userPrefix) {
-        messageBody = `Yo, my prefix is [ 𓆩 ${userPrefix} 𓆪 ]\n\n𝗦𝗢𝗠𝗘 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 𝗧𝗛𝗔𝗧 𝗠𝗔𝗬 𝗛𝗘𝗟𝗣 𝗬𝗢𝗨:\n➥ ${userPrefix}➥ ${userPrefix}sim [message] -> talk to bot\n➥ ${userPrefix}➥ ${userPrefix}help [command] -> information and usage of command\n\nHave fun using it, enjoy! ❤️\nBot Developer: https://www.facebook.com/${admin}`;
+        messageBody = `Yo, my prefix is [ 𓆩 ${prefix} 𓆪 ]\n\n𝗦𝗢𝗠𝗘 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 𝗧𝗛𝗔𝗧 𝗠𝗔𝗬 𝗛𝗘𝗟𝗣 𝗬𝗢𝗨:\n➥ ${prefix}➥ ${prefix}sim [message] -> talk to bot\n➥ ${prefix}➥ ${prefix}help [command] -> information and usage of command\n\nHave fun using it, enjoy! ❤️\nBot Developer: https://www.facebook.com/${admin}`;
     } else {
         messageBody = `I don't have a prefix set.\n\n𝗦𝗢𝗠𝗘 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 𝗧𝗛𝗔𝗧 𝗠𝗔𝗬 𝗛𝗘𝗟𝗣 𝗬𝗢𝗨:\n➥ sim [message] -> talk to bot\n➥ ai [command] -> can answer any question\n➥ help [command] -> information and usage of command\n\nHave fun using it, enjoy! ❤️\nBot Developer: https://www.facebook.com/${admin}`;
     }
@@ -53,7 +53,7 @@ module.exports.run = function ({ api, event, args, prefix, admin }) {
                 threadID,
                 () => {}
             );
-            api.setMessageReaction("🚀", messageInfo.messageID, (err) => {}, true);
+            api.setMessageReaction("🚀", messageInfo.messageID, () => {}, true);
         }
     );
 };

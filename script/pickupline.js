@@ -1,3 +1,5 @@
+const axios = require("axios");
+
 module.exports.config = {
 	name: "pickupline",
 	version: "1.0.0",
@@ -10,7 +12,6 @@ module.exports.config = {
 };
 
 module.exports.run = async ({ api, event, args }) => {
-const axios = global.nodemodule["axios"];
 const res = await axios.get(`https://lorenzorestapi.onrender.com/api/pickupline`);
   var pickupline = res.data.pickupline;
 return api.sendMessage(`💘${pickupline}`, event.threadID, event.messageID)
