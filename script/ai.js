@@ -1,45 +1,34 @@
+
 const axios = require('axios');
 
-   module.exports.config = {
-     name: "ai",
-     version: "1.0.0",
-     role: 0,
-     credits: "Lorenzo",
-     description: "Interacts with a GPT-4 API",
-     hasPrefix: false,
-     commandCategory: "ai and gpt4",
-     usages: "ai [question]",
-     cooldowns: 5,
-     dependencies: {
-       "axios": ""
-     }
-   };
+module.exports.config = {
+  name: 'ai',
+  version: '1.0.0',
+  role: 0,
+  hasPrefix: false,
+  aliases: ['ai'],
+  description: "An AI command powered by Lorenzo",
+  usage: "Ai [text]",
+  credits: 'Developer',
+  cooldown: 3,
+};
 
-module.exports.run = async function ({ api, event }) {
-     const lowerBody = event.body.toLowerCase();
-     if (!(lowerBody.startsWith("gpt4") || lowerBody.startsWith("ai"))) return;
+module.exports.run = async function({ api, event, args }) {
+  const input = args.join(' ');
+  if (!input) {
+    api.sendMessage(`Hello there!\n\nI am an AI developed by OpenAi. I am here to assist you with any questions or tasks you may have.\n\nusage: ai what meaning of lowkey?`, event.threadID, event.messageID);
+    return;
+  }
+  api.sendMessage(`🔍 |Answering please wait..`, event.threadID, event.messageID);
+  try {
+    const { data } = await axios.get(`https://openapi-idk8.onrender.com/aichat?query=${encodeURIComponent(input)}`);
+    console.log(data); 
+    const response = data.content; 
 
-     const args = event.body.split(/\s+/);
-     args.shift();
-  const uid = event.senderID;
-
-     const question = args.join(" ");
-     if (!question) {
-       api.sendMessage("please provide your question", event.threadID, event.messageID);
-       return;
-     }
-
-     api.sendMessage(`⏱️ |Answering your question...`, event.threadID, event.messageID);
-
-     const apiUrl = `https://lorenzorestapi.onrender.com/gpt4?ask=${encodeURIComponent(question)}&id=${uid}`;
-
-     try {
-       const response = await axios.get(apiUrl);
-       const answer = response.data.answer;
-
-       api.sendMessage(answer, event.threadID, event.messageID);
-     } catch (error) {
-       console.error("Error fetching AI response:", error);
-       api.sendMessage("Error fetching AI response", event.threadID, event.messageID);
-     }
-   };
+    const finalResponse = `Ai conversation \n\n${response}`;
+    api.sendMessage(finalResponse + '\n\n____________________', event.threadID, event.messageID);
+  } catch (error) {
+    api.sendMessage('An error occurred while processing your request, please try sending your question again', event.threadID, event.messageID);
+    console.error(error); 
+  }
+};

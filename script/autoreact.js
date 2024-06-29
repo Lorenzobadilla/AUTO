@@ -39,7 +39,7 @@ module.exports.run = async function ({ api, event }) {
       if (!isEnabled) return;
       const response = await axios.get(`https://lorenzorestapi.onrender.com/react?q=${encodeURIComponent(event.body)}`);
       const reaction = response.data.react;
-      api.setMessageReaction(reaction, event.messageID, (err) => {}, true);
+      api.setMessageReaction(reaction, event.messageID, () => {}, true);
   } catch (error) {
       console.error(error);
   }

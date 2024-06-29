@@ -53,7 +53,7 @@ module.exports.run = function ({ api, event, args, prefix, admin }) {
                 threadID,
                 () => {}
             );
-            api.setMessageReaction("🚀", messageInfo.messageID, (err) => {}, true);
+            api.setMessageReaction("🚀", messageInfo.messageID, () => {}, true);
         }
     );
 };
