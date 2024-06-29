@@ -5,7 +5,7 @@ module.exports.config = {
     name: "prefix",
     version: "1.0.1",
     role: 0,
-    credits: "cliff",
+    credits: "Lorenzo",
     description: "Display the prefix of your bot",
     hasPrefix: false,
     usages: "prefix",
@@ -36,10 +36,7 @@ module.exports.run = function ({ api, event, args, prefix, admin }) {
     }
 
     api.sendMessage(
-        {
-            body: messageBody,
-            attachment: fs.createReadStream(path.resolve(__dirname, "cache", "prefix.jpeg"))
-        },
+        messageBody,
         threadID,
         (err, messageInfo) => {
             if (err) return console.error(err);

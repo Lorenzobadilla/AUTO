@@ -2,9 +2,9 @@ module.exports.config = {
   name: "blackbox",
   version: "1.0.0",
   role: 0,
-  credits: "KENLIEPLAYS",
+  credits: "Lorenzo",//pls don't change credits
   hasPrefix: true,
-  description: "Blackbox by KENLIEPLAYS",
+  description: "Black box AI",
   commandCategory: "ai",
   usages: "[ask]",
   cooldowns: 2,
@@ -16,9 +16,9 @@ module.exports.run = async function({ api, event, args }) {
   let tid = threadID,
   mid = messageID;
   const content = encodeURIComponent(args.join(" "));
-  if (!args[0]) return api.sendMessage("Please type a message...", tid, mid);
+  if (!args[0]) return api.sendMessage("Please type a message..", tid, mid);
   try {
-      const res = await axios.get(`https://api.kenliejugarap.com/blackbox/?text=${content}`);
+      const res = await axios.get(`https://openapi-idk8.onrender.com/blackbox?chat=${content}`);
       const respond = res.data.response;
       if (res.data.error) {
           api.sendMessage(`Error: ${res.data.error}`, tid, (error, info) => {

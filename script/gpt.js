@@ -5,10 +5,10 @@ module.exports.config = {
   credits: "cliff",
   version: '1.0.0',
   role: 0,
-  aliases: ["Gpt"],
+  aliases: ["gpt"],
   cooldown: 0,
   hasPrefix: false,
-  usage: "",
+  usage: "gpt <message>",
 };
 
 module.exports.run = async function ({ api, event, args }) {
