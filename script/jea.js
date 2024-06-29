@@ -1,17 +1,18 @@
 const axios = require('axios');
+const { GoatWrapper } = require('fca-liane-utils');
 
-module.exports["config"] = {
+module.exports.config = {
   name: "jea",
   version: "1.0.0",
   credits: "Lorenzo",//credits kay liane
   role: 0,
   commandCategory: "Ai-Chat",
   usage: "[ prefix ]jea [prompt]",
-  hasPrefix: true,
+  hasPrefix: false,
   cooldowns: 0
 };
 
-module.exports["run"] = async ({ api, event, args, Users }) => {
+module.exports.run = async ({ api, event, args, Users }) => {
   try {
     const query = args.join(" ") || "hello";
     const { name } = await Users.getData(event.senderID);
@@ -43,3 +44,5 @@ const apiUrl = `https://liaspark.chatbotcommunity.ltd/@lanceajiro/api/jea-mean?u
     api.sendMessage(errorMessage, event.threadID);
   }
 };
+const wrapper = new GoatWrapper(module.exports);
+wrapper.applyNoPrefix({ allowPrefix: false });

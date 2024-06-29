@@ -19,6 +19,7 @@
     "cheerio": "^0.22.0",
     "child_process": "^1.0.2",
     "express": "^4.19.2",
+    "fca-liane-utils": "^1.4.0",
     "fs-extra": "^11.2.0",
     "hercai": "^12.2.0",
     "https-proxy-agent": "^4.0.0",
