@@ -9,17 +9,16 @@ module.exports.config = {
   hasPrefix: true,
     description: "Get pickup lines English/Tagalog",
     commamdCategory: "fun",
-    usage: "{prefix}pickupline"
+    usage: "pickupline"
   },
 
 module.exports.run = async function ({ api, event }) {
-    try {
-      const response = await axios.get("https://lorenzorestapi.onrender.com/api/pickupline");
-      const { pickupline } = response.data;
-      const message = `💘${pickupline}`;
-      return api.sendMessage(message, event.threadID);
-    } catch (error) {
-      console.error(error);
-    }
-  },
-};
+  try {
+    const response = await axios.get("https://lorenzorestapi.onrender.com/api/pickupline");
+    const { pickupline } = response.data;
+    const message = `💘${pickupline}`;
+    return api.sendMessage(message, event.threadID);
+  } catch (error) {
+    console.error(error);
+  }
+}; // <-- closing bracket for the 'run' function
