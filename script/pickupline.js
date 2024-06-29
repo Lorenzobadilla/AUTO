@@ -1,24 +1,17 @@
-const axios = require("axios");
-
 module.exports.config = {
-    name: "pickuplines",
-    version: "1.0.1",
-    author: "Lorenzo",
-    coolDown: 5,
-    role: 0,
-  hasPrefix: true,
-    description: "Get pickup lines English/Tagalog",
-    commamdCategory: "fun",
-    usage: "pickupline"
-  },
+	name: "pickupline",
+	version: "1.0.0",
+	role: 0,
+	credits: "Lorenzo",
+	hasPrefix: true,
+	description: "Random pickuplines English/Tagalog",
+	commandCategory: "fun",
+	cooldowns: 5
+};
 
-module.exports.run = async function ({ api, event }) {
-  try {
-    const response = await axios.get("https://lorenzorestapi.onrender.com/api/pickupline");
-    const { pickupline } = response.data;
-    const message = `💘${pickupline}`;
-    return api.sendMessage(message, event.threadID);
-  } catch (error) {
-    console.error(error);
-  }
-}; // <-- closing bracket for the 'run' function
+module.exports.run = async ({ api, event, args }) => {
+const axios = global.nodemodule["axios"];
+const res = await axios.get(`https://lorenzorestapi.onrender.com/api/pickupline`);
+  var pickupline = res.data.pickupline;
+return api.sendMessage(`💘${pickupline}`, event.threadID, event.messageID)
+}
